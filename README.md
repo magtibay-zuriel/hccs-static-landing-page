@@ -1,4 +1,4 @@
-# HCCS Alumni Association
+# HCCS Alumni Association Static Lnding Page
 
 A static React and TypeScript landing page for the Holy Cross College of Sasa Alumni Association. Built with Vite.
 
