@@ -14,7 +14,7 @@ a{color:inherit;text-decoration:none} img{width:100%;display:block}
 .container{width:min(92%,var(--container));margin:0 auto}
 
 .navbar{height:82px;display:flex;align-items:center;background:#fff;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--gray-200)}
-.nav-content{display:flex;align-items:center;justify-content:space-between}
+.nav-content{display:flex;align-items:center;justify-content:space-between;position:relative;min-height:82px}
 .brand{display:flex;align-items:center;gap:12px}
 .brand-mark{width:56px;height:56px;object-fit:cover;border-radius:50%;border:2px solid rgba(6,59,40,.2);display:block;background:#fff;padding:0;overflow:hidden;transform:scale(1.08)}
 .brand-title,.brand-subtitle{display:block;line-height:1.1}
@@ -23,6 +23,7 @@ a{color:inherit;text-decoration:none} img{width:100%;display:block}
 .nav-links{display:flex;gap:30px;align-items:center}
 .nav-links a{font-size:13px;font-weight:600;color:var(--gray-700);transition:.2s}
 .nav-links a:hover{color:var(--green-700)}
+.nav-toggle{display:none}
 .nav-actions{display:flex;align-items:center;gap:10px}
 .nav-button{background:var(--green-700);color:#fff;padding:11px 20px;font-size:13px;font-weight:700;transition:.2s;white-space:nowrap}
 .nav-button:hover{background:var(--green-900)}
@@ -40,8 +41,6 @@ a{color:inherit;text-decoration:none} img{width:100%;display:block}
 .button{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;font-size:13px;font-weight:700;transition:.2s}
 .button-primary{background:#fff;color:var(--green-800)} .button-primary:hover{background:var(--green-100)}
 .button-outline{border:1px solid rgba(255,255,255,.5);color:#fff}.button-outline:hover{background:rgba(255,255,255,.1)}
-.hero-tagline{margin-top:80px;font-family:"Playfair Display",serif;font-size:20px;font-style:italic;color:#d8e8df}
-
 .section{padding:110px 0}
 .section-label{display:block;color:var(--green-600);font-size:11px;font-weight:800;letter-spacing:2.5px;margin-bottom:15px}
 .section h2{font-family:"Playfair Display",serif;font-size:clamp(38px,5vw,58px);line-height:1.1}
@@ -126,13 +125,20 @@ a{color:inherit;text-decoration:none} img{width:100%;display:block}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:25px 0;display:flex;justify-content:space-between;color:#668074;font-size:11px}
 
 @media(max-width:950px){
-  .nav-links{display:none}.intro-grid{grid-template-columns:1fr}
+  .nav-content{gap:16px}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px 4%;background:#fff;border-top:1px solid var(--gray-200);box-shadow:0 14px 24px rgba(6,59,40,.12)}
+  .nav-links-open{display:flex}
+  .nav-links a{padding:12px 0;border-bottom:1px solid var(--gray-100)}
+  .nav-links a:last-child{border-bottom:none}
+  .nav-toggle{display:flex;flex:0 0 40px;width:40px;height:40px;align-items:center;justify-content:center;flex-direction:column;gap:5px;border:1px solid var(--gray-200);background:#fff;color:var(--green-900);cursor:pointer}
+  .nav-toggle span{display:block;width:18px;height:2px;background:currentColor}
+  .intro-grid{grid-template-columns:1fr}
   .stories-grid,.events-grid,.contact-grid{grid-template-columns:1fr 1fr}.achievement-grid{grid-template-columns:1fr 1fr}
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:650px){
-  .navbar{height:70px}.nav-actions{gap:6px}.nav-button{padding:9px 10px;font-size:11px}.nav-button-portal{padding:9px 8px}.hero{min-height:650px}.hero h1{font-size:52px}.hero p{font-size:15px}
-  .hero-tagline{margin-top:50px}.section{padding:75px 0}.values-card{padding:25px}.stats-grid{grid-template-columns:1fr 1fr}
+  .navbar{height:70px}.nav-content{min-height:70px;gap:8px}.nav-actions{gap:6px}.nav-button{padding:9px 10px;font-size:11px}.nav-button-portal{padding:9px 8px}.hero{min-height:650px}.hero h1{font-size:52px}.hero p{font-size:15px}
+  .section{padding:75px 0}.values-card{padding:25px}.stats-grid{grid-template-columns:1fr 1fr}
   .stat{border-bottom:1px solid rgba(255,255,255,.2)}.stat:nth-child(even){border-right:none}
   .section-heading{display:block}.section-heading p{margin-top:20px}
   .stories-grid,.events-grid,.achievement-grid,.contact-grid{grid-template-columns:1fr}.story-image{height:300px}

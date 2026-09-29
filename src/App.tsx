@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import campusImage from "./assets/hccs-campus.jpg";
 import logoImage from "./assets/hccs-logo2.png";
@@ -57,6 +58,8 @@ const events = [
 ];
 
 function App() {
+  const [isNavigationOpen, setIsNavigationOpen] = useState(false);
+
   return (
     <div className="app">
       <header className="navbar">
@@ -69,14 +72,30 @@ function App() {
             </div>
           </a>
 
-          <nav className="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#stories">Alumni Stories</a>
-            <a href="#events">Events</a>
-            <a href="#legacy">Our Legacy</a>
-            <a href="#contact">Contact</a>
+          <nav
+            id="site-navigation"
+            className={`nav-links${isNavigationOpen ? " nav-links-open" : ""}`}
+          >
+            <a href="#home" onClick={() => setIsNavigationOpen(false)}>Home</a>
+            <a href="#about" onClick={() => setIsNavigationOpen(false)}>About</a>
+            <a href="#stories" onClick={() => setIsNavigationOpen(false)}>Alumni Stories</a>
+            <a href="#events" onClick={() => setIsNavigationOpen(false)}>Events</a>
+            <a href="#legacy" onClick={() => setIsNavigationOpen(false)}>Our Legacy</a>
+            <a href="#contact" onClick={() => setIsNavigationOpen(false)}>Contact</a>
           </nav>
+
+          <button
+            type="button"
+            className="nav-toggle"
+            aria-label={isNavigationOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={isNavigationOpen}
+            aria-controls="site-navigation"
+            onClick={() => setIsNavigationOpen((isOpen) => !isOpen)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
 
           <div className="nav-actions">
             <a href="#member-page" className="nav-button nav-button-portal">Member Portal</a>
@@ -95,9 +114,9 @@ function App() {
           <div className="container hero-content">
             <div className="hero-badge">HOLY CROSS COLLEGE OF SASA, INC.</div>
             <h1>
-              One Community.
+              CONNECT. SERVE.
               <br />
-              <span>One Legacy.</span>
+              <span>GIVE BACK.</span>
             </h1>
             <p>
               Connecting generations of HCCSI alumni through faith, friendship,
@@ -110,9 +129,6 @@ function App() {
               <a href="#about" className="button button-outline">
                 Discover Our Story
               </a>
-            </div>
-            <div className="hero-tagline">
-              CONNECT. SERVE. GIVE BACK
             </div>
           </div>
         </section>
