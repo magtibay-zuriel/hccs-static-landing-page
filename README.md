@@ -48,6 +48,16 @@ npm run build
 
 The production files are generated in `dist/`.
 
+## Deploy to GitHub Pages
+
+The GitHub Actions workflow in `.github/workflows/deploy.yml` builds and deploys the site whenever changes are pushed to `master`.
+
+1. In the repository on GitHub, open **Settings > Pages**.
+2. Set the build and deployment source to **GitHub Actions**.
+3. Push changes to `master` or run the **Deploy to GitHub Pages** workflow manually from the **Actions** tab.
+
+After the workflow completes, the site is available at <https://magtibay-zuriel.github.io/hccs-static-landing-page/>.
+
 ## Image Assets
 
 Keep images used by the app in `src/assets/` and import them from the relevant source file. The header uses `hccs-logo2.png`; the hero section uses `hccs-campus.jpg`.
