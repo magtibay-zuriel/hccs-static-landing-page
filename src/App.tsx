@@ -44,6 +44,9 @@ const events = [
     title: "Alumni Homecoming",
     description:
       "Reconnect with old friends and celebrate the HCCSI alumni community.",
+    overview:
+      "Come together with fellow graduates for a homecoming centered on reconnecting, celebrating shared memories, and strengthening the HCCSI alumni community.",
+    emailSubject: "Alumni Homecoming details",
   },
   {
     id: "batch-reunion",
@@ -52,6 +55,9 @@ const events = [
     title: "Batch Reunion",
     description:
       "Bring your batch together and create new memories.",
+    overview:
+      "Gather with your former classmates, catch up across the years, and make new memories as a batch.",
+    emailSubject: "Batch Reunion details",
   },
   {
     id: "community-outreach",
@@ -60,6 +66,9 @@ const events = [
     title: "Community Outreach",
     description:
       "Continue the spirit of service by giving back to the community.",
+    overview:
+      "Take part in the HCCSI spirit of service through an opportunity to give back to the community alongside fellow alumni.",
+    emailSubject: "Community Outreach details",
   },
 ];
 
@@ -597,18 +606,44 @@ function EventDetailPage({ event }: { event: (typeof events)[number] | undefined
       <div className="container standalone-content">
         <a href="#/events" className="back-link">← All events</a>
         <span className="section-label">HCCSI ALUMNI EVENT</span>
-        <div className="event-detail-date">
-          <strong>{event.date}</strong>
-          <span>{event.month}</span>
+        <div className="event-detail-heading">
+          <div className="event-detail-date">
+            <strong>{event.date}</strong>
+            <span>{event.month}</span>
+          </div>
+          <div>
+            <span className="section-label">HCCSI ALUMNI EVENT</span>
+            <h1>{event.title}</h1>
+            <p className="standalone-lead">{event.description}</p>
+          </div>
         </div>
-        <h1>{event.title}</h1>
-        <p className="standalone-lead">{event.description}</p>
-        <div className="event-detail-note">
-          <h2>Event information</h2>
-          <p>Date and attendance details will be confirmed by the HCCSI Alumni Association.</p>
-          <a href="mailto:hccsasa66@hccsi.edu.ph" className="button button-green">
-            Ask about this event
-          </a>
+        <div className="event-detail-grid">
+          <article className="event-detail-overview">
+            <span className="section-label">ABOUT THIS EVENT</span>
+            <h2>Connect with the HCCSI community</h2>
+            <p>{event.overview}</p>
+            <a
+              href={`mailto:hccsasa66@hccsi.edu.ph?subject=${encodeURIComponent(event.emailSubject)}`}
+              className="button button-green"
+            >
+              Ask about this event
+            </a>
+          </article>
+          <aside className="event-detail-note">
+            <h2>Event information</h2>
+            <dl className="event-info-list">
+              <div><dt>Date</dt><dd>{event.month} {event.date}</dd></div>
+              <div><dt>Time</dt><dd>Contact the alumni office</dd></div>
+              <div><dt>Venue</dt><dd>Contact the alumni office</dd></div>
+              <div><dt>Registration</dt><dd>Contact the alumni office</dd></div>
+            </dl>
+            <p className="event-info-caption">
+              Time, venue, and registration information have not been provided yet.
+            </p>
+            <a href="mailto:hccsasa66@hccsi.edu.ph" className="event-contact-link">
+              hccsasa66@hccsi.edu.ph
+            </a>
+          </aside>
         </div>
       </div>
     </section>
