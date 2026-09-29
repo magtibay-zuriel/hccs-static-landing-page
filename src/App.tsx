@@ -10,7 +10,7 @@ const alumniStories = [
     image:
       "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80",
     quote:
-      "The values I learned at HCCS continue to guide me in serving others today.",
+      "The values I learned at HCCSI continue to guide me in serving others today.",
   },
   {
     name: "Juan Dela Cruz",
@@ -19,7 +19,7 @@ const alumniStories = [
     image:
       "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
     quote:
-      "HCCS gave me friendships, values, and memories that I continue to carry with me.",
+      "HCCSI gave me friendships, values, and memories that I continue to carry with me.",
   },
   {
     name: "Ana Reyes",
@@ -28,7 +28,7 @@ const alumniStories = [
     image:
       "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=600&q=80",
     quote:
-      "Coming back to HCCS always reminds me where my journey began.",
+      "Coming back to HCCSI always reminds me where my journey began.",
   },
 ];
 
@@ -38,7 +38,7 @@ const events = [
     month: "OCT",
     title: "Alumni Homecoming",
     description:
-      "Reconnect with old friends and celebrate the HCCSian community.",
+      "Reconnect with old friends and celebrate the HCCSI alumni community.",
   },
   {
     date: "08",
@@ -62,9 +62,9 @@ function App() {
       <header className="navbar">
         <div className="container nav-content">
           <a href="#home" className="brand">
-            <img src={logoImage} alt="HCCS logo" className="brand-mark" />
+            <img src={logoImage} alt="HCCSI logo" className="brand-mark" />
             <div>
-              <span className="brand-title">HCCS</span>
+              <span className="brand-title">HCCSI</span>
               <span className="brand-subtitle">ALUMNI ASSOCIATION</span>
             </div>
           </a>
@@ -78,7 +78,10 @@ function App() {
             <a href="#contact">Contact</a>
           </nav>
 
-          <a href="#join" className="nav-button">Join Us</a>
+          <div className="nav-actions">
+            <a href="#member-page" className="nav-button nav-button-portal">Member Portal</a>
+            <a href="#join" className="nav-button">Join Us</a>
+          </div>
         </div>
       </header>
 
@@ -97,7 +100,7 @@ function App() {
               <span>One Legacy.</span>
             </h1>
             <p>
-              Connecting generations of HCCSians through faith, friendship,
+              Connecting generations of HCCSI alumni through faith, friendship,
               service, and a shared commitment to our alma mater.
             </p>
             <div className="hero-buttons">
@@ -109,7 +112,7 @@ function App() {
               </a>
             </div>
             <div className="hero-tagline">
-              Once an HCCSian, Always an HCCSian.
+              CONNECT. SERVE. GIVE BACK
             </div>
           </div>
         </section>
@@ -120,14 +123,14 @@ function App() {
               <span className="section-label">OUR ALUMNI. OUR LEGACY.</span>
               <h2>The journey doesn't end<br />at graduation.</h2>
               <p>
-                The HCCS Alumni Association connects graduates from different
+                The HCCSI Alumni Association connects graduates from different
                 generations and keeps the spirit of Holy Cross College of Sasa
                 alive beyond the classroom.
               </p>
               <p>
                 Through meaningful connections, alumni activities, community
                 service, and opportunities to give back, we continue to build
-                a stronger HCCS community.
+                a stronger HCCSI community.
               </p>
               <a href="#join" className="text-link">
                 Become part of our community →
@@ -136,7 +139,7 @@ function App() {
 
             <div className="values-card">
               <div className="values-header">
-                <span>THE HCCSIAN WAY</span>
+                <span>THE HCCSI WAY</span>
                 <h3>Faith. Love. Service. Integrity.</h3>
               </div>
               <div className="values-grid">
@@ -153,7 +156,7 @@ function App() {
           <div className="container stats-grid">
             <div className="stat"><strong>1966</strong><span>Our Journey Began</span></div>
             <div className="stat"><strong>∞</strong><span>A Legacy That Continues</span></div>
-            <div className="stat"><strong>HCCS</strong><span>One Alma Mater</span></div>
+            <div className="stat"><strong>HCCSI</strong><span>One Alma Mater</span></div>
             <div className="stat"><strong>1</strong><span>United Community</span></div>
           </div>
         </section>
@@ -166,7 +169,7 @@ function App() {
                 <h2>Where are they now?</h2>
               </div>
               <p>
-                HCCSians continue to make a difference in their families,
+                HCCSI alumni continue to make a difference in their families,
                 professions, communities, and beyond.
               </p>
             </div>
@@ -198,7 +201,7 @@ function App() {
                 <h2>Connect. Celebrate. Reconnect.</h2>
               </div>
               <p>
-                Stay connected with fellow HCCSians through alumni activities
+                Stay connected with fellow HCCSI alumni through activities
                 and community events.
               </p>
             </div>
@@ -225,9 +228,9 @@ function App() {
           <div className="container">
             <div className="center-heading">
               <span className="section-label">HCCSIANS MAKING A DIFFERENCE</span>
-              <h2>From the halls of HCCS<br />to the world.</h2>
+              <h2>From the halls of HCCSI<br />to the world.</h2>
               <p>
-                Our alumni carry the HCCSian spirit into different professions
+                Our alumni carry the HCCSI spirit into different professions
                 and communities.
               </p>
             </div>
@@ -236,7 +239,7 @@ function App() {
               <div className="achievement"><span>01</span><h3>Education</h3><p>Teachers, professors, and educational leaders.</p></div>
               <div className="achievement"><span>02</span><h3>Healthcare</h3><p>Professionals dedicated to caring for others.</p></div>
               <div className="achievement"><span>03</span><h3>Business</h3><p>Entrepreneurs and professionals creating impact.</p></div>
-              <div className="achievement"><span>04</span><h3>Public Service</h3><p>HCCSians serving their communities.</p></div>
+              <div className="achievement"><span>04</span><h3>Public Service</h3><p>HCCSI alumni serving their communities.</p></div>
             </div>
           </div>
         </section>
@@ -249,7 +252,7 @@ function App() {
             <h2>Crusaders in Green</h2>
             <div className="legacy-line"></div>
             <p className="legacy-quote">"With This Sign, Conquer."</p>
-            <p className="legacy-description">
+              <p className="legacy-description">
               Wherever life takes us, we carry the values, memories, and
               friendships formed at Holy Cross College of Sasa.
             </p>
@@ -264,7 +267,7 @@ function App() {
             <div className="section-heading">
               <div>
                 <span className="section-label">CONTACT &amp; LOCATION</span>
-                <h2>Stay connected with HCCS.</h2>
+                <h2>Stay connected with HCCSI.</h2>
               </div>
               <p>
                 Visit the campus, reach out for inquiries, and stay updated on the latest happenings and community news.
@@ -326,13 +329,27 @@ function App() {
         <section id="join" className="join-section">
           <div className="container join-content">
             <span className="section-label">STAY CONNECTED</span>
-            <h2>Your HCCS journey<br />didn't end at graduation.</h2>
+            <h2>Your HCCSI journey<br />didn't end at graduation.</h2>
             <p>
-              Continue the legacy. Reconnect with fellow HCCSians. Serve your
+              Continue the legacy. Reconnect with fellow HCCSI alumni. Serve your
               community. Give back to the school that helped shape you.
             </p>
             <a href="mailto:alumni@example.com" className="button button-white">
               Join the Alumni Association
+            </a>
+          </div>
+        </section>
+
+        <section id="member-page" className="member-portal section">
+          <div className="container member-portal-content">
+            <span className="section-label">HCCSI MEMBERS</span>
+            <h2>Member Portal</h2>
+            <p>
+              Member portal access is being prepared. For membership assistance,
+              contact the Holy Cross College of Sasa office.
+            </p>
+            <a href="mailto:hccsasa66@hccsi.edu.ph" className="button button-primary">
+              Contact HCCSI
             </a>
           </div>
         </section>
@@ -342,14 +359,14 @@ function App() {
         <div className="container footer-grid">
           <div className="footer-brand">
             <div className="brand">
-              <img src={campusImage} alt="HCCS logo" className="brand-mark" />
+              <img src={logoImage} alt="HCCSI logo" className="brand-mark" />
               <div>
-                <span className="brand-title">HCCS</span>
+                <span className="brand-title">HCCSI</span>
                 <span className="brand-subtitle">ALUMNI ASSOCIATION</span>
               </div>
             </div>
             <p>
-              Connecting generations of HCCSians and continuing the legacy of
+              Connecting generations of HCCSI alumni and continuing the legacy of
               Holy Cross College of Sasa.
             </p>
           </div>
@@ -384,7 +401,7 @@ function App() {
         </div>
 
         <div className="container footer-bottom">
-          <span>© 2026 HCCS Alumni Association</span>
+          <span>© 2026 HCCSI Alumni Association</span>
           <span>Holy Cross College of Sasa, Inc.</span>
         </div>
       </footer>
