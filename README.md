@@ -1,24 +1,53 @@
 # HCCS Alumni Association
 
-Static React + TypeScript landing page proposal for the Holy Cross College of Sasa Alumni Association.
+A static React and TypeScript landing page for the Holy Cross College of Sasa Alumni Association. Built with Vite.
 
-## Run
+## Project Structure
+
+```text
+.
+|-- src/
+|   |-- assets/
+|   |   |-- hccs-campus.jpg
+|   |   |-- hccs-logo.png
+|   |   `-- hccs-logo2.png
+|   |-- App.css
+|   |-- App.tsx
+|   |-- index.css
+|   |-- main.tsx
+|   `-- vite-env.d.ts
+|-- .gitignore
+|-- index.html
+|-- package.json
+|-- package-lock.json
+|-- README.md
+|-- tsconfig.app.json
+|-- tsconfig.json
+|-- tsconfig.node.json
+`-- vite.config.ts
+```
+
+## Requirements
+
+- Node.js and npm
+
+## Run Locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open the local URL shown by Vite.
+Open the local URL printed by Vite.
 
-## Build
+## Production Build
 
 ```bash
 npm run build
 ```
 
-## Notes
+The production files are generated in `dist/`.
 
-- Replace the placeholder alumni images with approved HCCS photos.
-- Replace the text-based HCCS mark with the official school/alumni logo if available.
-- Replace placeholder alumni names, dates, statistics, and contact email with official information before publication.
+## Image Assets
+
+Keep images used by the app in `src/assets/` and import them from the relevant source file. The header uses `hccs-logo2.png`; the hero section uses `hccs-campus.jpg`.
