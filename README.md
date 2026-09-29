@@ -56,7 +56,7 @@ The GitHub Actions workflow in `.github/workflows/deploy.yml` builds and deploys
 2. Set the build and deployment source to **GitHub Actions**.
 3. Push changes to `master` or run the **Deploy to GitHub Pages** workflow manually from the **Actions** tab.
 
-After the workflow completes, the site is available at <https://magtibay-zuriel.github.io/hccs-static-landing-page/>.
+After DNS validation and the workflow deployment complete, the site is available at <https://alumni-hccsi.techadviseph.com/>.
 
 ## Image Assets
 
