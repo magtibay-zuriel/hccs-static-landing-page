@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import campusImage from "./assets/hccs-campus.jpg";
 import logoImage from "./assets/hccsi-alumni-logo.png";
 
 const alumniStories = [
   {
+    id: "maria-santos",
     name: "Maria Santos",
     batch: "Batch 2010",
     role: "Healthcare Professional",
@@ -14,6 +15,7 @@ const alumniStories = [
       "The values I learned at HCCSI continue to guide me in serving others today.",
   },
   {
+    id: "juan-dela-cruz",
     name: "Juan Dela Cruz",
     batch: "Batch 2005",
     role: "Business Professional",
@@ -23,6 +25,7 @@ const alumniStories = [
       "HCCSI gave me friendships, values, and memories that I continue to carry with me.",
   },
   {
+    id: "ana-reyes",
     name: "Ana Reyes",
     batch: "Batch 1998",
     role: "Educator",
@@ -35,6 +38,7 @@ const alumniStories = [
 
 const events = [
   {
+    id: "alumni-homecoming",
     date: "15",
     month: "OCT",
     title: "Alumni Homecoming",
@@ -42,6 +46,7 @@ const events = [
       "Reconnect with old friends and celebrate the HCCSI alumni community.",
   },
   {
+    id: "batch-reunion",
     date: "08",
     month: "NOV",
     title: "Batch Reunion",
@@ -49,6 +54,7 @@ const events = [
       "Bring your batch together and create new memories.",
   },
   {
+    id: "community-outreach",
     date: "20",
     month: "DEC",
     title: "Community Outreach",
@@ -57,14 +63,39 @@ const events = [
   },
 ];
 
+function getCurrentRoute() {
+  const hash = window.location.hash;
+  return hash.startsWith("#/") ? hash.slice(1).replace(/\/$/, "") || "/" : "/";
+}
+
 function App() {
   const [isNavigationOpen, setIsNavigationOpen] = useState(false);
+  const [currentRoute, setCurrentRoute] = useState(getCurrentRoute);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentRoute(getCurrentRoute());
+      setIsNavigationOpen(false);
+
+      const hash = window.location.hash;
+      if (hash && !hash.startsWith("#/")) {
+        requestAnimationFrame(() => {
+          document.getElementById(hash.slice(1))?.scrollIntoView();
+        });
+      } else {
+        window.scrollTo(0, 0);
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   return (
     <div className="app">
       <header className="navbar">
         <div className="container nav-content">
-          <a href="#home" className="brand">
+          <a href="#/" className="brand">
             <img src={logoImage} alt="HCCSI logo" className="brand-mark" />
             <div>
               <span className="brand-title">HCCSI</span>
@@ -76,10 +107,10 @@ function App() {
             id="site-navigation"
             className={`nav-links${isNavigationOpen ? " nav-links-open" : ""}`}
           >
-            <a href="#home" onClick={() => setIsNavigationOpen(false)}>Home</a>
+            <a href="#/" onClick={() => setIsNavigationOpen(false)}>Home</a>
             <a href="#about" onClick={() => setIsNavigationOpen(false)}>About</a>
-            <a href="#stories" onClick={() => setIsNavigationOpen(false)}>Alumni Stories</a>
-            <a href="#events" onClick={() => setIsNavigationOpen(false)}>Events</a>
+            <a href="#/stories" onClick={() => setIsNavigationOpen(false)}>Alumni Stories</a>
+            <a href="#/events" onClick={() => setIsNavigationOpen(false)}>Events</a>
             <a href="#legacy" onClick={() => setIsNavigationOpen(false)}>Our Legacy</a>
             <a href="#contact" onClick={() => setIsNavigationOpen(false)}>Contact</a>
           </nav>
@@ -98,13 +129,15 @@ function App() {
           </button>
 
           <div className="nav-actions">
-            <a href="#member-page" className="nav-button nav-button-portal">Member Portal</a>
+            <a href="#/member-page" className="nav-button nav-button-portal">Member Portal</a>
             <a href="#join" className="nav-button">Join Us</a>
           </div>
         </div>
       </header>
 
-      <main>
+        <main>
+          {currentRoute === "/" ? (
+            <>
         <section
           id="home"
           className="hero"
@@ -183,6 +216,7 @@ function App() {
               <div>
                 <span className="section-label">ALUMNI STORIES</span>
                 <h2>Where are they now?</h2>
+                <a href="#/stories" className="text-link">Browse all stories →</a>
               </div>
               <p>
                 HCCSI alumni continue to make a difference in their families,
@@ -194,14 +228,16 @@ function App() {
               {alumniStories.map((story) => (
                 <article className="story-card" key={story.name}>
                   <div className="story-image">
-                    <img src={story.image} alt={story.name} />
+                    <a href={`#/stories/${story.id}`} aria-label={`Read ${story.name}'s story`}>
+                      <img src={story.image} alt={story.name} />
+                    </a>
                   </div>
                   <div className="story-content">
                     <span>{story.batch}</span>
-                    <h3>{story.name}</h3>
+                    <h3><a href={`#/stories/${story.id}`}>{story.name}</a></h3>
                     <p className="story-role">{story.role}</p>
                     <blockquote>"{story.quote}"</blockquote>
-                    <a href="#join">Read Story →</a>
+                      <a href={`#/stories/${story.id}`}>Read Story →</a>
                   </div>
                 </article>
               ))}
@@ -215,6 +251,7 @@ function App() {
               <div>
                 <span className="section-label">GET CONNECTED</span>
                 <h2>Connect. Celebrate. Reconnect.</h2>
+                <a href="#/events" className="text-link events-all-link">Browse all events →</a>
               </div>
               <p>
                 Stay connected with fellow HCCSI alumni through activities
@@ -230,9 +267,9 @@ function App() {
                     <span>{event.month}</span>
                   </div>
                   <div>
-                    <h3>{event.title}</h3>
+                    <h3><a href={`#/events/${event.id}`}>{event.title}</a></h3>
                     <p>{event.description}</p>
-                    <a href="#join">Learn More →</a>
+                    <a href={`#/events/${event.id}`}>Learn More →</a>
                   </div>
                 </article>
               ))}
@@ -356,19 +393,20 @@ function App() {
           </div>
         </section>
 
-        <section id="member-page" className="member-portal section">
-          <div className="container member-portal-content">
-            <span className="section-label">HCCSI MEMBERS</span>
-            <h2>Member Portal</h2>
-            <p>
-              Member portal access is being prepared. For membership assistance,
-              contact the Holy Cross College of Sasa office.
-            </p>
-            <a href="mailto:hccsasa66@hccsi.edu.ph" className="button button-primary">
-              Contact HCCSI
-            </a>
-          </div>
-        </section>
+            </>
+          ) : currentRoute === "/member-page" ? (
+            <MemberPortalPage />
+          ) : currentRoute === "/stories" ? (
+            <StoriesPage />
+          ) : currentRoute.startsWith("/stories/") ? (
+            <StoryDetailPage story={alumniStories.find((story) => story.id === currentRoute.split("/")[2])} />
+          ) : currentRoute === "/events" ? (
+            <EventsPage />
+          ) : currentRoute.startsWith("/events/") ? (
+            <EventDetailPage event={events.find((event) => event.id === currentRoute.split("/")[2])} />
+          ) : (
+            <NotFoundPage />
+          )}
       </main>
 
       <footer className="footer">
@@ -389,14 +427,15 @@ function App() {
 
           <div className="footer-column">
             <h4>Explore</h4>
-            <a href="#home">Home</a>
+            <a href="#/">Home</a>
             <a href="#about">About</a>
-            <a href="#stories">Alumni Stories</a>
-            <a href="#events">Events</a>
+            <a href="#/stories">Alumni Stories</a>
+            <a href="#/events">Events</a>
           </div>
 
           <div className="footer-column">
             <h4>Get Involved</h4>
+            <a href="#/member-page">Member Portal</a>
             <a href="#join">Join Us</a>
             <a href="#join">Volunteer</a>
             <a href="#join">Mentorship</a>
@@ -422,6 +461,170 @@ function App() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function MemberPortalPage() {
+  return (
+    <section className="section standalone-page member-portal-page">
+      <div className="container standalone-content">
+        <a href="#/" className="back-link">← Back to home</a>
+        <span className="section-label">HCCSI MEMBERS</span>
+        <h1>Member Portal</h1>
+        <p className="standalone-lead">
+          A dedicated online space for HCCSI alumni is being prepared.
+        </p>
+        <div className="portal-preview">
+          <span className="portal-preview-label">MEMBER ACCESS</span>
+          <h2>Welcome, HCCSI alumni</h2>
+          <p>
+            Portal sign-in and member services will appear here when the alumni
+            account system is ready. For membership assistance in the meantime,
+            contact the college office.
+          </p>
+          <a href="mailto:hccsasa66@hccsi.edu.ph" className="button button-green">
+            Contact HCCSI
+          </a>
+        </div>
+        <div className="portal-shortcuts">
+          <a href="#/stories">Explore alumni stories <span>→</span></a>
+          <a href="#/events">Browse upcoming events <span>→</span></a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function StoriesPage() {
+  return (
+    <section className="section standalone-page directory-page">
+      <div className="container">
+        <a href="#/" className="back-link">← Back to home</a>
+        <div className="section-heading">
+          <div>
+            <span className="section-label">HCCSI ALUMNI</span>
+            <h1>Alumni Stories</h1>
+          </div>
+          <p>Meet HCCSI alumni carrying the values of their school into their communities and professions.</p>
+        </div>
+        <div className="stories-grid">
+          {alumniStories.map((story) => (
+            <article className="story-card" key={story.id}>
+              <div className="story-image">
+                <a href={`#/stories/${story.id}`} aria-label={`Read ${story.name}'s story`}>
+                  <img src={story.image} alt={story.name} />
+                </a>
+              </div>
+              <div className="story-content">
+                <span>{story.batch}</span>
+                <h3><a href={`#/stories/${story.id}`}>{story.name}</a></h3>
+                <p className="story-role">{story.role}</p>
+                <blockquote>"{story.quote}"</blockquote>
+                <a href={`#/stories/${story.id}`}>Read Story →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function StoryDetailPage({ story }: { story: (typeof alumniStories)[number] | undefined }) {
+  if (!story) return <NotFoundPage />;
+
+  return (
+    <section className="section standalone-page detail-page">
+      <div className="container">
+        <a href="#/stories" className="back-link">← All alumni stories</a>
+        <article className="story-detail">
+          <img src={story.image} alt={story.name} className="story-detail-image" />
+          <div className="story-detail-content">
+            <span className="section-label">{story.batch}</span>
+            <h1>{story.name}</h1>
+            <p className="story-role">{story.role}</p>
+            <blockquote>"{story.quote}"</blockquote>
+            <p>
+              HCCSI alumni continue to connect, serve, and give back in the
+              places where life and work take them. This story is part of the
+              growing HCCSI alumni community.
+            </p>
+            <a href="#/stories" className="button button-green">Explore more stories</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  );
+}
+
+function EventsPage() {
+  return (
+    <section className="section standalone-page events-directory">
+      <div className="container">
+        <a href="#/" className="back-link">← Back to home</a>
+        <div className="section-heading light">
+          <div>
+            <span className="section-label">HCCSI ALUMNI COMMUNITY</span>
+            <h1>Events</h1>
+          </div>
+          <p>Connect with fellow HCCSI alumni through reunions, homecoming, and service.</p>
+        </div>
+        <div className="events-grid">
+          {events.map((event) => (
+            <article className="event-card" key={event.id}>
+              <div className="event-date">
+                <strong>{event.date}</strong>
+                <span>{event.month}</span>
+              </div>
+              <div>
+                <h3><a href={`#/events/${event.id}`}>{event.title}</a></h3>
+                <p>{event.description}</p>
+                <a href={`#/events/${event.id}`}>Event details →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function EventDetailPage({ event }: { event: (typeof events)[number] | undefined }) {
+  if (!event) return <NotFoundPage />;
+
+  return (
+    <section className="section standalone-page event-detail-page">
+      <div className="container standalone-content">
+        <a href="#/events" className="back-link">← All events</a>
+        <span className="section-label">HCCSI ALUMNI EVENT</span>
+        <div className="event-detail-date">
+          <strong>{event.date}</strong>
+          <span>{event.month}</span>
+        </div>
+        <h1>{event.title}</h1>
+        <p className="standalone-lead">{event.description}</p>
+        <div className="event-detail-note">
+          <h2>Event information</h2>
+          <p>Date and attendance details will be confirmed by the HCCSI Alumni Association.</p>
+          <a href="mailto:hccsasa66@hccsi.edu.ph" className="button button-green">
+            Ask about this event
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function NotFoundPage() {
+  return (
+    <section className="section standalone-page">
+      <div className="container standalone-content">
+        <span className="section-label">HCCSI ALUMNI ASSOCIATION</span>
+        <h1>Page not found</h1>
+        <p className="standalone-lead">That page may have moved or is not available.</p>
+        <a href="#/" className="button button-green">Return home</a>
+      </div>
+    </section>
   );
 }
 
