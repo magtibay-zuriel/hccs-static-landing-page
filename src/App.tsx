@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import campusImage from "./assets/hccs-campus.jpg";
-import logoImage from "./assets/hccs-logo2.png";
+import logoImage from "./assets/hccsi-alumni-logo.png";
 
 const alumniStories = [
   {
